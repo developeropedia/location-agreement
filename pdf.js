@@ -913,14 +913,17 @@ function generatePDF() {
     pdf.setFillColor('#ffffff')
     pdf.roundedRect(pxToMm(x + 110), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75), 'F')
 
+    pdf.setFontSize(pxToPt(13.5))
     pdf.setTextColor('#000000')
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     if (isEnglishText($('#producer_name').val())) {
-        pdf.text($('#producer_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
+        pdf.text($('#producer_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 1))
     } else {
-        pdf.text($('#producer_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#producer_name').val()), pxToMm(y - 2))
+        pdf.text($('#producer_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#producer_name').val()), pxToMm(y - 1))
     }
 
+    pdf.setFontSize(pxToPt(18))
+    pdf.setTextColor('#ffffff')
     pdf.text("المـنـتــج", pxToMm(getPageWidthInPx() / 2 - 60), pxToMm(y))
 
     y += 35
@@ -1019,12 +1022,14 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 120), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75), 'DF')
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
+    pdf.setFontSize(pxToPt(13.5))
     if (isEnglishText($('#box_2_host').val())) {
         pdf.text($('#box_2_host').val(), pxToMm(x + 120) + 2, pxToMm(y - 1))
     } else {
         pdf.text($('#box_2_host').val(), pxToMm(x + 120) + pxToMm(110) - 2 - getTextWidth($('#box_2_host').val()), pxToMm(y - 1))
     }
 
+    pdf.setFontSize(pxToPt(18))
     pdf.text("المـنـتــج", pxToMm(getPageWidthInPx() - 115), pxToMm(y))
 
     y += 35
@@ -1098,7 +1103,7 @@ function generatePDF() {
     pdf.setFontSize(pxToPt(13.5))
     pdf.setTextColor('#DB0000')
     pdf.text("Verified via Makanat.com", pxToMm(x - 5), pxToMm(y))
-    pdf.text("موثق عبر", pxToMm(getPageWidthInPx() - 110), pxToMm(y))
+    pdf.text("موثق عبر مكانات", pxToMm(getPageWidthInPx() - 150), pxToMm(y))
 
     pdf.addPage();
     var x = 55
