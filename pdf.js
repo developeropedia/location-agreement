@@ -624,6 +624,10 @@ function generatePDF() {
     var x = 55
     var y = 50
 
+    pdf.setDrawColor('#000000')
+    pdf.setFillColor('#FFFAFA')
+    pdf.roundedRect(pxToMm(x - 15), pxToMm(y - 25), pxToMm(getPageWidthInPx() - (x * 2) + 25), pxToMm(40), pxToMm(0.75), pxToMm(0.75), 'F')
+
     pdf.setFontSize(pxToPt(15))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.8 Cancellation Policy:')
@@ -634,6 +638,12 @@ function generatePDF() {
     pdf.text("2.8", pxToMm(getPageWidthInPx() - x - 30), pxToMm(y))
 
     y += 40
+
+    pdf.setDrawColor('#E97878')
+    pdf.setFillColor('#FFFAFA')
+    pdf.setLineWidth(0.1)
+    pdf.roundedRect(pxToMm(x - 15), pxToMm(y - 20), pxToMm(getPageWidthInPx() - (x * 2) + 25), pxToMm(95), pxToMm(0.75), pxToMm(0.75), 'DF')
+
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.8.1 Makanat grace period:')
@@ -657,6 +667,12 @@ function generatePDF() {
     justify(pdf, "الحجز بشرط أن يقع الإلغاء خلال (24) ساعة من تاريخ استلام تأكيد الحجز وبما لا يقل عن (48) ساعة من التاريخ المقرر لبدء التصوير", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 80
+
+    pdf.setDrawColor('#E97878')
+    pdf.setFillColor('#FFFAFA')
+    pdf.setLineWidth(0.1)
+    pdf.roundedRect(pxToMm(x - 15), pxToMm(y - 20), pxToMm(getPageWidthInPx() - (x * 2) + 25), pxToMm(220), pxToMm(0.75), pxToMm(0.75), 'DF')
+
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.8.2 Space cancellation policy:')
@@ -680,6 +696,13 @@ function generatePDF() {
     justify(pdf, "إلغاء حجوزاتهم بشرط أن يقع الإلغاء قبل ثلاثين (30) يوم من الموعد المحدد لبدء الفاعلية. وفى هذه الحالة سيحصل الضيوف على استرداد كامل (بما في ذلك جميع الرسوم) عن مقابل الحجوزات الملغاة. إذا وقع إلغاء الحجوزات في الفترة ما بين ثلاثين (30) يوم إلى ما قبل سبعة (7) أيام من الوقت المحدد لبدء الفاعلية، فلا يجوز للضيوف إلا استرداد 50٪ من مقابل الحجوزات المدفوعة (باستثناء الرسوم). ولا يجوز استرداد مقابل الحجوزات التي يجرى إلغائها في مدة أقل من سبعة (7) أيام من وقت بدء الفاعلية", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 200
+
+    pdf.setDrawColor('#E97878')
+    pdf.setFillColor('#FFFAFA')
+    pdf.setLineWidth(0.1)
+    pdf.roundedRect(pxToMm(x - 15), pxToMm(y - 15), pxToMm(getPageWidthInPx() - (x * 2) + 25), pxToMm(160), pxToMm(0.75), pxToMm(0.75), 'DF')
+
+    y += 5
     pdf.setFontSize(pxToPt(13.5))
     justify(pdf, "2.8.3 In the event of cancellation of bookings by the Host, penalties may be imposed against him and he may be liable for costs, expenses and other losses. In the event of cancellation of bookings without excuse, the Host agrees to pay a penalty of 15% of the total booking price, which represents the costs of evacuating the Producer to another location.", pxToMm(x), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 56))
 
