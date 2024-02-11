@@ -353,10 +353,10 @@ function generatePDF() {
     pdf.text("1.1", pxToMm(getPageWidthInPx() - x - 25), pxToMm(y))
 
     y += 20
-    pdf.text("إدارة العقار الواقع في العنوان المذكور ، حيث يتمتع المضيف", pxToMm(getPageWidthInPx() - x - 315), pxToMm(y), { charSpace: 0.1 })
+    pdf.text("العنوان المذكور ، حيث يتمتع المضيف" + "بالحق والسلطة", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), { charSpace: 0.3 })
 
     y += 20
-    pdf.text("بالحق والسلطة والصلاحية لإبرام هذه الاتفاقية", pxToMm(getPageWidthInPx() - x - 245), pxToMm(y), { charSpace: 0.1 })
+    pdf.text(" لإبرام هذه الاتفاقية", pxToMm(getPageWidthInPx() - x - 110), pxToMm(y), { charSpace: 0.1 })
 
     y += 30
     pdf.setFontSize(pxToPt(13.5))
@@ -380,7 +380,7 @@ function generatePDF() {
     pdf.line(pxToMm(x + 20), pxToMm(y), pxToMm(x + 100), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("SAR and detailed in Appendix No (1).", pxToMm(x + 110), pxToMm(y), { charSpace: 0.03 })
+    pdf.text("and detailed in Appendix No (1).", pxToMm(x + 110), pxToMm(y), { charSpace: 0.03 })
 
     y -= 40
     pdf.text("/يرغب المنتِج في استخدام العقار في مشروع وسائط مرئية", pxToMm(getPageWidthInPx() - x - 315), pxToMm(y), { charSpace: 0.02 })
@@ -392,7 +392,7 @@ function generatePDF() {
     pdf.line(pxToMm(getPageWidthInPx() - x - 315), pxToMm(y), pxToMm(getPageWidthInPx() - x - 225), pxToMm(y))
 
     y += 20
-    pdf.text("ريال سعودي موضح بالتفاصيل في الملحق رقم (1)", pxToMm(getPageWidthInPx() - x - 263), pxToMm(y), { charSpace: 0.04 })
+    pdf.text("(1)" + "موضح بالتفاصيل في الملحق رقم", pxToMm(getPageWidthInPx() - x - 195), pxToMm(y), { charSpace: 0.04 })
 
     y += 40
     pdf.setFontSize(pxToPt(18))
@@ -470,7 +470,7 @@ function generatePDF() {
     pdf.text("خلال الفترة المتفق عليها، يمنح", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0.05 })
 
     y += 20
-    justify(pdf, "المضيف للمنتج ، وموظفيه ، ومعداته ، ومساعديه ، والشركات التابعة له ، ووكلائه الحق والتصريح للقيام بما يلي: (أ) دخول الموقع والبقاء فيه وشغله بطريقة تسمح بالقيام بأنشطة الإنتاج فيما يتعلق بالمشروع. (ب) إجراء التصوير الفوتوغرافي أو تسجيل الصوت أو الفيديو. (ج) تحرير أو بث التسجيل ونشر أو طباعة الصور الفوتوغرافية في جميع وسائط الإعلام وأثناء العمل وحتى انتهاء المشروع وبعد انتهائه. (د) ضمان سلامة ومنع تعرض الآخرين للخطر خلال فترة العمل واستغلال العقار", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl')
+    justify(pdf, "المضيف للمنتج ، وموظفيه ، ومعداته ، ومساعديه ، والشركات التابعة له ، ووكلائه الحق والتصريح للقيام بما يلي: (أ) دخول الموقع والبقاء فيه وشغله بطريقة تسمح بالقيام بأنشطة الإنتاج فيما يتعلق بالمشروع. (ب) إجراء التصوير الفوتوغرافي أو تسجيل الصوت أو الفيديو. (ج) تحرير أو بث التسجيل ونشر أو طباعة الصور الفوتوغرافية في جميع وسائط الإعلام وأثناء العمل وحتى انتهاء المشروع وبعد انتهائه. (د) ضمان سلامة ومنع تعرض الآخرين للخطر خلال فترة العمل واستغلال العقار", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
     y += 250
     pdf.setFontSize(pxToPt(13.5))
@@ -492,7 +492,7 @@ function generatePDF() {
     pdf.text("يلتزم المنتج بالضوابط", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0.3 })
 
     y += 20
-    justify(pdf, "المتعلقة بمحتوى الوسائط المنصوص عليها في المادة (5) من قانون الإعلام المرئي والمسموع السعودي وضوابط النشر الواردة في قانون المطبوعات والنشر السعودي. ويشمل ذلك الحصول على جميع التصاريح والرخص اللازمة قبل البدء بالإنتاج", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl')
+    justify(pdf, "المتعلقة بمحتوى الوسائط المنصوص عليها في المادة (5) من قانون الإعلام المرئي والمسموع السعودي وضوابط النشر الواردة في قانون المطبوعات والنشر السعودي. ويشمل ذلك الحصول على جميع التصاريح والرخص اللازمة قبل البدء بالإنتاج", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
     y += 110
     pdf.setFontSize(pxToPt(13.5))
@@ -547,10 +547,10 @@ function generatePDF() {
 
     y += 20
     pdf.setLineDashPattern([0.5, 0.7])
-    pdf.line(pxToMm(x), pxToMm(y), pxToMm(x + 145), pxToMm(y))
+    pdf.line(pxToMm(x), pxToMm(y), pxToMm(x + 170), pxToMm(y))
     pdf.text($('#amount_2_5').val(), pxToMm(x) + 2, pxToMm(y - 3))
 
-    pdf.text(pxToMm(x + 150), pxToMm(y), 'SAR for the use of the Property', { charSpace: 0.03 })
+    pdf.text(pxToMm(x + 175), pxToMm(y), 'for the use of the Property', { charSpace: 0.03 })
 
     y += 20
     pdf.text(pxToMm(x), pxToMm(y), 'during the Term.', { charSpace: 0.03 })
@@ -565,10 +565,10 @@ function generatePDF() {
     pdf.text("يدفع المنتج للمضيف مبلغًا إجماليًا قدره", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0.2 })
 
     y += 20
-    pdf.line(pxToMm(getPageWidthInPx() - x - 75), pxToMm(y), pxToMm(x + 675), pxToMm(y))
+    pdf.line(pxToMm(getPageWidthInPx() - x - 10), pxToMm(y), pxToMm(x + 540), pxToMm(y))
     pdf.text($('#amount_2_5_ar').val(), pxToMm(x + 675) - 2 - getTextWidth($('#amount_2_5_ar').val()), pxToMm(y - 3))
 
-    pdf.text("ريال سعودي مقابل استخدام الموقع خلال", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0.2 })
+    pdf.text("مقابل استخدام الموقع خلال", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0.2 })
 
     y += 20
     pdf.text("المدة المتفق عليها", pxToMm(getPageWidthInPx() - x - 115), pxToMm(y), { charSpace: 0.2 })
@@ -594,7 +594,7 @@ function generatePDF() {
     pdf.text("يلتزم المضيف بتسليم الموقع للمنتج", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0 })
 
     y += 20
-    justify(pdf, "خلال الفترة المتفق عليها ، لاستخدام العقار في إطار المشروع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl')
+    justify(pdf, "خلال الفترة المتفق عليها ، لاستخدام العقار في إطار المشروع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
     y += 60
     pdf.setFontSize(pxToPt(13.5))
@@ -617,7 +617,7 @@ function generatePDF() {
     pdf.text("في حالة طلب المنتج", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), { charSpace: 0 })
 
     y += 20
-    justify(pdf, "زيادة في الفترة ، وبعد موافقة المستضيف ، سيتم تحصيل رسوم مقابل استخدام اوقات العمل الإضافي تساوي قيمة الساعة الاضافية الواحدة مضروبًا في 1.5 لرسوم العقار واجور مدير الموقع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl')
+    justify(pdf, "زيادة في الفترة ، وبعد موافقة المستضيف ، سيتم تحصيل رسوم مقابل استخدام اوقات العمل الإضافي تساوي قيمة الساعة الاضافية الواحدة مضروبًا في 1.5 لرسوم العقار واجور مدير الموقع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
     pdf.addPage();
     addFooter()
@@ -689,11 +689,11 @@ function generatePDF() {
     pdf.text("2.8.2", pxToMm(getPageWidthInPx() - x - 30), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("يجوز للضيوف", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.3 })
+    pdf.text("يجوز للضيوف" + " " + "إلغاء", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.03 })
 
 
     y += 20
-    justify(pdf, "إلغاء حجوزاتهم بشرط أن يقع الإلغاء قبل ثلاثين (30) يوم من الموعد المحدد لبدء الفاعلية. وفى هذه الحالة سيحصل الضيوف على استرداد كامل (بما في ذلك جميع الرسوم) عن مقابل الحجوزات الملغاة. إذا وقع إلغاء الحجوزات في الفترة ما بين ثلاثين (30) يوم إلى ما قبل سبعة (7) أيام من الوقت المحدد لبدء الفاعلية، فلا يجوز للضيوف إلا استرداد 50٪ من مقابل الحجوزات المدفوعة (باستثناء الرسوم). ولا يجوز استرداد مقابل الحجوزات التي يجرى إلغائها في مدة أقل من سبعة (7) أيام من وقت بدء الفاعلية", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+    justify(pdf, "حجوزاتهم بشرط أن يقع الإلغاء قبل ثلاثين (30) يوم من الموعد المحدد لبدء الفاعلية. وفى هذه الحالة سيحصل الضيوف على استرداد كامل (بما في ذلك جميع الرسوم) عن مقابل الحجوزات الملغاة. إذا وقع إلغاء الحجوزات في الفترة ما بين ثلاثين (30) يوم إلى ما قبل سبعة (7) أيام من الوقت المحدد لبدء الفاعلية، فلا يجوز للضيوف إلا استرداد 50٪ من مقابل الحجوزات المدفوعة (باستثناء الرسوم). ولا يجوز استرداد مقابل الحجوزات التي يجرى إلغائها في مدة أقل من سبعة (7) أيام من وقت بدء الفاعلية", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 200
 
@@ -722,16 +722,16 @@ function generatePDF() {
 
     y -= 20
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
-    pdf.text("القوة القاهرة", pxToMm(getPageWidthInPx() - x - 100), pxToMm(y))
-    pdf.text(":", pxToMm(getPageWidthInPx() - x - 110), pxToMm(y), { charSpace: 0.3 })
+    pdf.text("القوة القاهرة", pxToMm(getPageWidthInPx() - x - 90), pxToMm(y))
+    pdf.text(":", pxToMm(getPageWidthInPx() - x - 100), pxToMm(y), { charSpace: 0.3 })
     pdf.text("2.9", pxToMm(getPageWidthInPx() - x - 20), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("إذا تم منع أو إعاقة استخدام", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.3 })
+    pdf.text("إذا تم منع أو إعاقة استخدام" + " " + "المنتج" + " " + "للموقع", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0 })
 
 
     y += 20
-    justify(pdf, "المنتج للموقع بسبب حدث خارج عن سيطرة المنتج (بما في ذلك ، على سبيل المثال لا الحصر ، التأخيرات الناتجة عن الاحوال الجوية) ، فإنه يحق للمُنتج عندئذٍ – وبدون أي تكلفة إضافية – استخدام واستغلال الموقع المشار إليه لفترة زمنية إضافية تساوي الوقت الضائع بسبب حالة القوة القاهرة ، على أن تبدأ هذه المهلة الإضافية في وقت يتفق عليه كلا الطرفين بعد انتهاء حدث القوة القاهرة", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+    justify(pdf, "بسبب حدث خارج عن سيطرة المنتج (بما في ذلك ، على سبيل المثال لا الحصر ، التأخيرات الناتجة عن الاحوال الجوية) ، فإنه يحق للمُنتج عندئذٍ – وبدون أي تكلفة إضافية – استخدام واستغلال الموقع المشار إليه لفترة زمنية إضافية تساوي الوقت الضائع بسبب حالة القوة القاهرة ، على أن تبدأ هذه المهلة الإضافية في وقت يتفق عليه كلا الطرفين بعد انتهاء حدث القوة القاهرة", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 180
     pdf.setFontSize(pxToPt(13.5))
@@ -773,7 +773,7 @@ function generatePDF() {
     pdf.text("2.11", pxToMm(getPageWidthInPx() - x - 28), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("يجب على المنتج الامتثال لجميع", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0 })
+    pdf.text("يجب على المنتج الامتثال لجميع", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.2 })
 
 
     y += 20
@@ -823,7 +823,7 @@ function generatePDF() {
     pdf.text("2.13", pxToMm(getPageWidthInPx() - x - 28), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("يجب تقديم جميع الإخطارات بين المنتج", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.03 })
+    pdf.text("يجب تقديم جميع الإخطارات بين المنتج", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.13 })
 
 
     y += 20
@@ -841,16 +841,16 @@ function generatePDF() {
 
     y -= 20
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
-    pdf.text("مدة الاتفاقية", pxToMm(getPageWidthInPx() - x - 100), pxToMm(y))
-    pdf.text(":", pxToMm(getPageWidthInPx() - x - 110), pxToMm(y), { charSpace: 0.3 })
+    pdf.text("مدة الاتفاقية", pxToMm(getPageWidthInPx() - x - 98), pxToMm(y))
+    pdf.text(":", pxToMm(getPageWidthInPx() - x - 105), pxToMm(y), { charSpace: 0.3 })
     pdf.text("2.14", pxToMm(getPageWidthInPx() - x - 28), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("تنتهي هذه الاتفاقية في نهاية الفترة", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.03 })
+    pdf.text("تنتهي هذه الاتفاقية في نهاية الفترة" + " " + "المشار", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0. })
 
 
     y += 20
-    justify(pdf, "المشار إليها ما لم يطلب المنتج ساعات عمل إضافية ، وفي جميع الحالات ، تنتهي عند انتهاء عمل مشروع المنتج", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+    justify(pdf, "إليها ما لم يطلب المنتج ساعات عمل إضافية ، وفي جميع الحالات ، تنتهي عند انتهاء عمل مشروع المنتج", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 80
     pdf.setFontSize(pxToPt(13.5))
@@ -913,7 +913,7 @@ function generatePDF() {
     pdf.text("2.17", pxToMm(getPageWidthInPx() - x - 28), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    pdf.text("حرر هذا العقد من ثلاث نسخ متطابقه وقعتا من كلا", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.03 })
+    pdf.text("حرر هذا العقد من ثلاث نسخ متطابقه وقعتا من كلا", pxToMm(getPageWidthInPx() - x - 312), pxToMm(y), { charSpace: 0.2 })
 
 
     y += 20
@@ -1322,7 +1322,7 @@ function generatePDF() {
     pdf.setFontSize(pxToPt(11))
     pdf.text("© Makanat International LLC. | 4549 Al Urubah Rd, 8498 Al Olaya Dist, Riyadh 12333 | support@makanat.com | makanat.com", pxToMm(getPageWidthInPx() / 2), pxToMm(y), { maxWidth: pxToMm(getPageWidthInPx() - x - 72), align: 'center' })
 
-    function justify(pdfGen, text, xStart, yStart, textWidth, textDirection = "ltr", bullet = false) {
+    function justify(pdfGen, text, xStart, yStart, textWidth, textDirection = "ltr", bullet = false, page2 = false) {
         text = text.replace(/(?:\r\n|\r|\n)/g, ' ');
         text = text.replace(/ +(?= )/g, '');
         const lineHeight = pdfGen.getTextDimensions('a').h * 1.5;
@@ -1341,19 +1341,22 @@ function generatePDF() {
             lineLength += wordLength;
         }
         if (wordsInfo.length > 0) {
-            writeLastLine(wordsInfo, pdfGen, xStart, yStart, lineNumber, lineHeight, textDirection, bullet);
+            writeLastLine(wordsInfo, pdfGen, xStart, yStart, lineNumber, lineHeight, textDirection, bullet, page2);
         }
     }
 
-    function writeLastLine(wordsInfo, pdfGen, xStart, yStart, lineNumber, lineHeight, textDirection, bullet) {
+    function writeLastLine(wordsInfo, pdfGen, xStart, yStart, lineNumber, lineHeight, textDirection, bullet, page2) {
         const line = wordsInfo.map(x => x.text).join(' ');
         const lineLength = wordsInfo.reduce((total, wordInfo) => total + wordInfo.wordLength, 0);
 
         let x;
         if (textDirection === 'rtl') {
             // Starting from the last position from the right
-            x = xStart + pdfGen.internal.pageSize.width - lineLength - (lineLength > 16 ? 129 : 128);
+            // x = xStart + pdfGen.internal.pageSize.width - lineLength - (lineLength > 16 ? 129 : 128);
+            // x = pxToMm(xStart - 50 - getTextWidth(line))
+            x = pxToMm(getPageWidthInPx() - 50) - lineLength
             x = bullet ? x - 5 : x
+            x = page2 ? x - 2 : x
         } else {
             x = xStart;
         }
