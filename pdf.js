@@ -51,6 +51,10 @@ function generatePDF() {
         return (pdf.getStringUnitWidth(text) * pdf.getFontSize()) / (72 / 25.6)
     }
 
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     function isEnglishText(text) {
 
         // Regular expressions to match English and Arabic characters
@@ -59,6 +63,28 @@ function generatePDF() {
         // Check if the input text matches English or Arabic
         if (englishRegex.test(text)) {
             return true;
+        }
+
+        return false;
+    }
+
+    function isEnglishText2(text) {
+
+        // Regular expressions to match English and Arabic characters
+        var englishRegex = /^[a-zA-Z0-9\s.,;:'"!?()-]+$/;
+        var words = text.split(" ");
+
+        var count = 0;
+        for (var i = 0; i < 10; i++) {
+            var word = words[getRandomNumber(0, words.length)];
+
+            if (englishRegex.test(word)) {
+                count++;
+
+                if (count >= 3) {
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -108,7 +134,7 @@ function generatePDF() {
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.setFontSize(pxToPt(15))
-    pdf.text($("#booking_num").val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + 2, pxToMm(y))
+    pdf.text($("#booking_num").val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($("#booking_num").val()) / 2))) + 2, pxToMm(y))
 
     pdf.setDrawColor('#B5B5B5')
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 80), pxToMm(y - 20), pxToMm(300), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
@@ -221,11 +247,12 @@ function generatePDF() {
     pdf.text("“Project”:", pxToMm(x), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#project_name').val())) {
-        pdf.text($('#project_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#project_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + pxToMm(300) - 2 - getTextWidth($('#project_name').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#project_name').val())) {
+    //     pdf.text($('#project_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#project_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + pxToMm(300) - 2 - getTextWidth($('#project_name').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#project_name').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#project_name').val()) / 2))) + 2, pxToMm(y - 3))
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
@@ -240,11 +267,13 @@ function generatePDF() {
     pdf.text("“Property”:", pxToMm(x), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#property_name').val())) {
-        pdf.text($('#property_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#property_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + pxToMm(300) - 2 - getTextWidth($('#property_name').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#property_name').val())) {
+    //     pdf.text($('#property_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#property_name').val(), pxToMm(getPageWidthInPx() / 2 - x - 80) + pxToMm(300) - 2 - getTextWidth($('#property_name').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#property_name').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#property_name').val()) / 2))) + 2, pxToMm(y - 3))
+
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
@@ -259,11 +288,13 @@ function generatePDF() {
     pdf.text("Located at", pxToMm(x), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#located_at').val())) {
-        pdf.text($('#located_at').val(), pxToMm(getPageWidthInPx() / 2 - x - 150) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#located_at').val(), pxToMm(getPageWidthInPx() / 2 - x - 150) + pxToMm(430) - 2 - getTextWidth($('#located_at').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#located_at').val())) {
+    //     pdf.text($('#located_at').val(), pxToMm(getPageWidthInPx() / 2 - x - 150) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#located_at').val(), pxToMm(getPageWidthInPx() / 2 - x - 150) + pxToMm(430) - 2 - getTextWidth($('#located_at').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#located_at').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#located_at').val()) / 2))) + 2, pxToMm(y - 3))
+
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
@@ -279,17 +310,21 @@ function generatePDF() {
     pdf.text("Date", pxToMm(x + 220), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#date').val())) {
-        pdf.text($('#date').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#date').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#date').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#date').val())) {
+    //     pdf.text($('#date').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#date').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#date').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#date').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#date').val()) / 2))) + 2, pxToMm(y - 3))
+
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - 60), pxToMm(y - 20), pxToMm(150), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
-    pdf.text('الفترة”:', pxToMm(getPageWidthInPx() - x - 50), pxToMm(y))
+    pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
+    pdf.text(":" + 'الفترة”', pxToMm(getPageWidthInPx() - x - 50), pxToMm(y))
+    pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.text('تبدأ في تاريخ', pxToMm(getPageWidthInPx() - x - 220), pxToMm(y))
 
     y += 40
@@ -297,11 +332,13 @@ function generatePDF() {
     pdf.text("Start time", pxToMm(x + 185), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#start_time').val())) {
-        pdf.text($('#start_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#start_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#start_time').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#start_time').val())) {
+    //     pdf.text($('#start_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#start_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#start_time').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#start_time').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#start_time').val()) / 2))) + 2, pxToMm(y - 3))
+
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
@@ -314,11 +351,13 @@ function generatePDF() {
     pdf.text("End time", pxToMm(x + 190), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#end_time').val())) {
-        pdf.text($('#end_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
-    } else {
-        pdf.text($('#end_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#end_time').val()), pxToMm(y - 3))
-    }
+    // if (isEnglishText($('#end_time').val())) {
+    //     pdf.text($('#end_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + 2, pxToMm(y - 3))
+    // } else {
+    //     pdf.text($('#end_time').val(), pxToMm(getPageWidthInPx() / 2 - 60) + pxToMm(150) - 2 - getTextWidth($('#end_time').val()), pxToMm(y - 3))
+    // }
+    pdf.text($('#end_time').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#end_time').val()) / 2))) + 2, pxToMm(y - 3))
+
 
     pdf.setLineDashPattern()
     pdf.setDrawColor('#B5B5B5')
@@ -358,6 +397,8 @@ function generatePDF() {
     y += 20
     pdf.text(" لإبرام هذه الاتفاقية", pxToMm(getPageWidthInPx() - x - 110), pxToMm(y), { charSpace: 0.1 })
 
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 112), pxToMm(y))
+
     y += 30
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
@@ -392,7 +433,7 @@ function generatePDF() {
     pdf.line(pxToMm(getPageWidthInPx() - x - 315), pxToMm(y), pxToMm(getPageWidthInPx() - x - 225), pxToMm(y))
 
     y += 20
-    pdf.text("(1)" + "موضح بالتفاصيل في الملحق رقم", pxToMm(getPageWidthInPx() - x - 195), pxToMm(y), { charSpace: 0.04 })
+    pdf.text(".(1)" + "موضح بالتفاصيل في الملحق رقم", pxToMm(getPageWidthInPx() - x - 195), pxToMm(y), { charSpace: 0.04 })
 
     y += 40
     pdf.setFontSize(pxToPt(18))
@@ -446,6 +487,9 @@ function generatePDF() {
     y += 20
     pdf.text("مستخدمين مسجلين في الموقع أم لا", pxToMm(getPageWidthInPx() - x - 203), pxToMm(y), { charSpace: 0.1 })
 
+    y += 0
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 207), pxToMm(y))
+
     pdf.addPage();
     addFooter()
     var x = 55
@@ -472,7 +516,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "المضيف للمنتج ، وموظفيه ، ومعداته ، ومساعديه ، والشركات التابعة له ، ووكلائه الحق والتصريح للقيام بما يلي: (أ) دخول الموقع والبقاء فيه وشغله بطريقة تسمح بالقيام بأنشطة الإنتاج فيما يتعلق بالمشروع. (ب) إجراء التصوير الفوتوغرافي أو تسجيل الصوت أو الفيديو. (ج) تحرير أو بث التسجيل ونشر أو طباعة الصور الفوتوغرافية في جميع وسائط الإعلام وأثناء العمل وحتى انتهاء المشروع وبعد انتهائه. (د) ضمان سلامة ومنع تعرض الآخرين للخطر خلال فترة العمل واستغلال العقار", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
-    y += 250
+    y += 140
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 308), pxToMm(y))
+
+    y += 120
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.3 Media Content Controls:')
@@ -494,7 +541,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "المتعلقة بمحتوى الوسائط المنصوص عليها في المادة (5) من قانون الإعلام المرئي والمسموع السعودي وضوابط النشر الواردة في قانون المطبوعات والنشر السعودي. ويشمل ذلك الحصول على جميع التصاريح والرخص اللازمة قبل البدء بالإنتاج", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
-    y += 110
+    y += 80
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 45), pxToMm(y))
+
+    y += 40
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.4 Rules:')
@@ -512,7 +562,10 @@ function generatePDF() {
     pdf.text("\u2022 ", pxToMm(getPageWidthInPx() - x - 15), pxToMm(y), { charSpace: 0.3 })
     justify(pdf, "يجب على المنتج تقديم خطة تفصيلية للإنتاج إلى المضيف، تتضمن تواريخ وأوقات الاستخدام ، وعدد الأشخاص المشاركين، وأي معدات أو احتياجات خاصة", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 110), 'rtl', true)
 
-    y += 80
+    y += 40
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 225), pxToMm(y))
+
+    y += 40
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '\u2022 ')
     justify(pdf, 'Producer is required to adhere to the agreed Term.', pxToMm(x + 18), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 70))
@@ -520,24 +573,32 @@ function generatePDF() {
     pdf.text("\u2022 ", pxToMm(getPageWidthInPx() - x - 15), pxToMm(y), { charSpace: 0.3 })
     justify(pdf, "يجب على المنتج الالتزام بالفترة المتفق عليها", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 110), 'rtl', true)
 
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 240), pxToMm(y))
+
     y += 20
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '\u2022 ')
     justify(pdf, "Producer must abide to the Host's Space Rules for the use of the Property specified in the appendix (1).", pxToMm(x + 18), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 70))
 
     pdf.text("\u2022 ", pxToMm(getPageWidthInPx() - x - 15), pxToMm(y), { charSpace: 0.3 })
-    justify(pdf, "يجب على المنتج الامتثال لجميع القواعد واللوائح والإجراءات المتعلقة بتلك الاستضافة والمذكورة في الملحق رقم 1", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 110), 'rtl', true)
+    justify(pdf, "يجب على المنتج الامتثال لجميع القواعد واللوائح والإجراءات المتعلقة بتلك الاستضافة والمذكورة في الملحق رقم", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 110), 'rtl', true)
 
     y += 40
+    pdf.text(".(1)", pxToMm(getPageWidthInPx() - x - 100), pxToMm(y))
+
+    y += 20
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '\u2022 ')
     justify(pdf, "Producer are not allowed to leave any equipment, clothing, or personal belongings in any area of the premises or in the corridors. If any equipment is left it will be abandoned and disposed of without compensation.", pxToMm(x + 18), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 70))
 
-    y += 20
+    y += 0
     pdf.text("\u2022 ", pxToMm(getPageWidthInPx() - x - 15), pxToMm(y), { charSpace: 0.3 })
     justify(pdf, "لا يُسمح للمنتج بترك أي معدات أو ملابس أو أغراض شخصية في أي منطقة من الموقع او المبنى أو في الممرات. إذا تم ترك أي معدات، سيتم اعتبار هذه المعدات مهجورة وسيتم التخلص منها دون تعويض", pxToMm(getPageWidthInPx() - x - 310), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 110), 'rtl', true)
 
-    y += 110
+    y += 60
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 230), pxToMm(y))
+
+    y += 50
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.5 Payment')
@@ -573,6 +634,8 @@ function generatePDF() {
     y += 20
     pdf.text("المدة المتفق عليها", pxToMm(getPageWidthInPx() - x - 115), pxToMm(y), { charSpace: 0.2 })
 
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 120), pxToMm(y))
+
     y += 40
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
@@ -596,6 +659,8 @@ function generatePDF() {
     y += 20
     justify(pdf, "خلال الفترة المتفق عليها ، لاستخدام العقار في إطار المشروع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
 
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 305), pxToMm(y))
+
     y += 60
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
@@ -618,6 +683,9 @@ function generatePDF() {
 
     y += 20
     justify(pdf, "زيادة في الفترة ، وبعد موافقة المستضيف ، سيتم تحصيل رسوم مقابل استخدام اوقات العمل الإضافي تساوي قيمة الساعة الاضافية الواحدة مضروبًا في 1.5 لرسوم العقار واجور مدير الموقع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 90), 'rtl', false, true)
+
+    y += 60
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 70), pxToMm(y))
 
     pdf.addPage();
     addFooter()
@@ -664,7 +732,7 @@ function generatePDF() {
 
 
     y += 20
-    justify(pdf, "الحجز بشرط أن يقع الإلغاء خلال (24) ساعة من تاريخ استلام تأكيد الحجز وبما لا يقل عن (48) ساعة من التاريخ المقرر لبدء التصوير", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+    justify(pdf, "الحجز بشرط أن يقع الإلغاء خلال (24) ساعة من تاريخ استلام تأكيد الحجز وبما لا يقل عن (48) ساعة من التاريخ المقرر لبدء .التصوير", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 80
 
@@ -693,7 +761,7 @@ function generatePDF() {
 
 
     y += 20
-    justify(pdf, "حجوزاتهم بشرط أن يقع الإلغاء قبل ثلاثين (30) يوم من الموعد المحدد لبدء الفاعلية. وفى هذه الحالة سيحصل الضيوف على استرداد كامل (بما في ذلك جميع الرسوم) عن مقابل الحجوزات الملغاة. إذا وقع إلغاء الحجوزات في الفترة ما بين ثلاثين (30) يوم إلى ما قبل سبعة (7) أيام من الوقت المحدد لبدء الفاعلية، فلا يجوز للضيوف إلا استرداد 50٪ من مقابل الحجوزات المدفوعة (باستثناء الرسوم). ولا يجوز استرداد مقابل الحجوزات التي يجرى إلغائها في مدة أقل من سبعة (7) أيام من وقت بدء الفاعلية", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+    justify(pdf, "حجوزاتهم بشرط أن يقع الإلغاء قبل ثلاثين (30) يوم من الموعد المحدد لبدء الفاعلية. وفى هذه الحالة سيحصل الضيوف على استرداد كامل (بما في ذلك جميع الرسوم) عن مقابل الحجوزات الملغاة. إذا وقع إلغاء الحجوزات في الفترة ما بين ثلاثين (30) يوم إلى ما قبل سبعة (7) أيام من الوقت المحدد لبدء الفاعلية، فلا يجوز للضيوف إلا استرداد 50٪ من مقابل الحجوزات المدفوعة (باستثناء الرسوم). ولا يجوز استرداد مقابل الحجوزات التي يجرى إلغائها في مدة أقل من سبعة (7) أيام من وقت بدء .الفاعلية", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
     y += 200
 
@@ -710,7 +778,10 @@ function generatePDF() {
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     justify(pdf, "2.8.3 في حالة إلغاء الحجوزات من قبل المضيف، فإنه قد يتم فرض الغرامات ضده كما قد يكون مسؤولاً عن التكاليف والنفقات والخسائر الأخرى. في حالة إلغاء الحجوزات بدون عذر ، يوافق المضيف على دفع غرامة قدرها 15% من السعر الإجمالي للحجز والتي تمثل تكاليف إخلاء المنتج لموقع آخر", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 160
+    y += 80
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 240), pxToMm(y))
+
+    y += 90
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.9 Force Majeure:')
@@ -733,7 +804,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "بسبب حدث خارج عن سيطرة المنتج (بما في ذلك ، على سبيل المثال لا الحصر ، التأخيرات الناتجة عن الاحوال الجوية) ، فإنه يحق للمُنتج عندئذٍ – وبدون أي تكلفة إضافية – استخدام واستغلال الموقع المشار إليه لفترة زمنية إضافية تساوي الوقت الضائع بسبب حالة القوة القاهرة ، على أن تبدأ هذه المهلة الإضافية في وقت يتفق عليه كلا الطرفين بعد انتهاء حدث القوة القاهرة", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 180
+    y += 120
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 37), pxToMm(y))
+
+    y += 60
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.10 Intellectual Property Rights:')
@@ -756,7 +830,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "من أي نوع في مثل هذه التسجيلات وبأي طرق وأشكال ووسائط معروفة الآن أو التي يتم ابتكارها في المستقبل (بما في ذلك ، على سبيل المثال لا الحصر ، جميع حقوق التأليف والنشر فيها وجميع التجديدات والتمديدات واستعادة حقوق التأليف والنشر المذكورة) ستكون مملوكة ملكية حصرية في جميع أنحاء العالم وإلى الأبد من قبل المنتج", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 140
+    y += 100
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 160), pxToMm(y))
+
+    y += 40
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.11 Legal Compliance:')
@@ -778,6 +855,9 @@ function generatePDF() {
 
     y += 20
     justify(pdf, "القوانين واللوائح المعمول بها في المملكة العربية السعودية ، بالإضافة إلى ذلك ، يوافق المنتج على تحمل المسؤولية القانونية والمالية عن إنتاج أي محتوى قد ينتهك قوانين المملكة", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+
+    y += 40
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 270), pxToMm(y))
 
     pdf.addPage();
     addFooter()
@@ -806,7 +886,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "اتخاذ عناية معقولة لمنع أي أضرار بالموقع أو محتوياته أثناء الاستخدام ، ما لم يتم توفير تأمين ضد المسؤولية العامة لصالح المضيف ، بتعويض المضيف عن أي أضرار مادية بالموقع أو محتوياته. بالإضافة إلى ذلك ، يوافق المنتج على التعويض القانوني لأي طرف يتأثر بأضرار أو إصابات نجمت عن استخدام الموقع ، شريطة إبلاغ الضرر خلال 48 ساعة من حدوثه أو إخلاء المنتج من الموقع ، أيهما يأتي أولاً. في حالة وجود أي إجراء أو مطالبة تنشأ عن أو تتعلق بهذه الاتفاقية ، أو استخدام العقار ، أو استخدام أو استغلال أي تسجيلات صوتية أو مرئية تم إجراؤها على العقار أو منه ، فإن اللجوء الوحيد للمضيف هو المطالبة بالتعويض النقدي", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 320
+    y += 205
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 90), pxToMm(y))
+
+    y += 115
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.13 Notifications:')
@@ -852,7 +935,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "إليها ما لم يطلب المنتج ساعات عمل إضافية ، وفي جميع الحالات ، تنتهي عند انتهاء عمل مشروع المنتج", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 80
+    y += 20
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 232), pxToMm(y))
+
+    y += 60
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.15 Governing Law:')
@@ -875,7 +961,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "وفقًا لقوانين المملكة العربية السعودية، وتتمتع المحاكم السعودية بالسلطة القضائية لنظر أي نزاع أو خلاف ينشأ عنها أو فيما يتعلق بها", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 80
+    y += 40
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 70), pxToMm(y))
+
+    y += 40
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.16 Bilingual Agreement:')
@@ -898,7 +987,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "والانجليزية وفي حالة وجود تعارض بين النص العربي والنص الإنجليزي يتم ترجيح النص العربي", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
-    y += 60
+    y += 20
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 164), pxToMm(y))
+
+    y += 40
     pdf.setFontSize(pxToPt(13.5))
     pdf.setFont('IBMPlexSansArabic-SemiBold', 'normal')
     pdf.text(pxToMm(x), pxToMm(y), '2.17')
@@ -918,6 +1010,9 @@ function generatePDF() {
 
     y += 20
     justify(pdf, "الطرفين، ولكل نسخة الدرجة نفسها من الحجية وقد تسلم كل طرف نسخة منه", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
+
+    y += 20
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 82), pxToMm(y))
 
     y += 50
     pdf.roundedRect(pxToMm(x), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - x), pxToMm(210), pxToMm(0.75), pxToMm(0.75))
@@ -939,11 +1034,12 @@ function generatePDF() {
     pdf.setFontSize(pxToPt(13.5))
     pdf.setTextColor('#000000')
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#producer_name').val())) {
-        pdf.text($('#producer_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 1))
-    } else {
-        pdf.text($('#producer_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#producer_name').val()), pxToMm(y - 1))
-    }
+    // if (isEnglishText($('#producer_name').val())) {
+    //     pdf.text($('#producer_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 1))
+    // } else {
+    //     pdf.text($('#producer_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#producer_name').val()), pxToMm(y - 1))
+    // }
+    pdf.text($('#producer_name').val(), pxToMm(x + 165 - mmToPx((getTextWidth($('#producer_name').val()) / 2))), pxToMm(y - 1))
 
     pdf.setFontSize(pxToPt(18))
     pdf.setTextColor('#ffffff')
@@ -960,13 +1056,15 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 110), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_1_name').val())) {
-        pdf.text($('#box_1_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_1_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_name').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_1_name').val())) {
+    //     pdf.text($('#box_1_name').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_1_name').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_name').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_1_name').val(), pxToMm(x + 165 - mmToPx((getTextWidth($('#box_1_name').val()) / 2))), pxToMm(y - 2))
 
-    pdf.text("الاسم", pxToMm(getPageWidthInPx() / 2 - 44), pxToMm(y))
+
+    pdf.text(":" + "الاسم", pxToMm(getPageWidthInPx() / 2 - 44), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
@@ -977,30 +1075,34 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 110), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_1_title').val())) {
-        pdf.text($('#box_1_title').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_1_title').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_title').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_1_title').val())) {
+    //     pdf.text($('#box_1_title').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_1_title').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_title').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_1_title').val(), pxToMm(x + 165 - mmToPx((getTextWidth($('#box_1_title').val()) / 2))), pxToMm(y - 2))
 
-    pdf.text("المسمى الوظيفي", pxToMm(getPageWidthInPx() / 2 - 100), pxToMm(y))
+
+    pdf.text(":" + "المسمى الوظيفي", pxToMm(getPageWidthInPx() / 2 - 100), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
-    pdf.text("ID number", pxToMm(x + 15), pxToMm(y))
+    pdf.text("ID number:", pxToMm(x + 15), pxToMm(y))
 
     pdf.setDrawColor('#000000')
     pdf.setFillColor('#000000')
     pdf.roundedRect(pxToMm(x + 110), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_1_id').val())) {
-        pdf.text($('#box_1_id').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_1_id').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_id').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_1_id').val())) {
+    //     pdf.text($('#box_1_id').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_1_id').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_id').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_1_id').val(), pxToMm(x + 165 - mmToPx((getTextWidth($('#box_1_id').val()) / 2))), pxToMm(y - 2))
 
-    pdf.text("هوية رقم", pxToMm(getPageWidthInPx() / 2 - 60), pxToMm(y))
+
+    pdf.text(":" + "هوية رقم", pxToMm(getPageWidthInPx() / 2 - 60), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
@@ -1011,13 +1113,15 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 110), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_1_date').val())) {
-        pdf.text($('#box_1_date').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_1_date').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_id').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_1_date').val())) {
+    //     pdf.text($('#box_1_date').val(), pxToMm(x + 110) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_1_date').val(), pxToMm(x + 110) + pxToMm(110) - 2 - getTextWidth($('#box_1_id').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_1_date').val(), pxToMm(x + 165 - mmToPx((getTextWidth($('#box_1_date').val()) / 2))), pxToMm(y - 2))
 
-    pdf.text("التاريخ", pxToMm(getPageWidthInPx() / 2 - 45), pxToMm(y))
+
+    pdf.text(":" + "التاريخ", pxToMm(getPageWidthInPx() / 2 - 45), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
@@ -1046,14 +1150,16 @@ function generatePDF() {
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     pdf.setFontSize(pxToPt(13.5))
-    if (isEnglishText($('#box_2_host').val())) {
-        pdf.text($('#box_2_host').val(), pxToMm(x + 120) + 2, pxToMm(y - 1))
-    } else {
-        pdf.text($('#box_2_host').val(), pxToMm(x + 120) + pxToMm(110) - 2 - getTextWidth($('#box_2_host').val()), pxToMm(y - 1))
-    }
+    // if (isEnglishText($('#box_2_host').val())) {
+    //     pdf.text($('#box_2_host').val(), pxToMm(x + 120) + 2, pxToMm(y - 1))
+    // } else {
+    //     pdf.text($('#box_2_host').val(), pxToMm(x + 120) + pxToMm(110) - 2 - getTextWidth($('#box_2_host').val()), pxToMm(y - 1))
+    // }
+    pdf.text($('#box_2_host').val(), pxToMm(x + 175 - mmToPx((getTextWidth($('#box_2_host').val()) / 2))), pxToMm(y - 1))
+
 
     pdf.setFontSize(pxToPt(18))
-    pdf.text("المـنـتــج", pxToMm(getPageWidthInPx() - 115), pxToMm(y))
+    pdf.text("المضيـــف", pxToMm(getPageWidthInPx() - 125), pxToMm(y))
 
     y += 35
     x += 20
@@ -1066,45 +1172,51 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 100), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_2_name').val())) {
-        pdf.text($('#box_2_name').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_2_name').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_name').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_2_name').val())) {
+    //     pdf.text($('#box_2_name').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_2_name').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_name').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_2_name').val(), pxToMm(x + 155 - mmToPx((getTextWidth($('#box_2_name').val()) / 2))), pxToMm(y - 1))
 
-    pdf.text("الاسم", pxToMm(getPageWidthInPx() - 95), pxToMm(y))
+
+    pdf.text(":" + "الاسم", pxToMm(getPageWidthInPx() - 95), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
-    pdf.text("ID number", pxToMm(x - 5), pxToMm(y))
+    pdf.text("ID number:", pxToMm(x - 5), pxToMm(y))
 
     pdf.setDrawColor('#000000')
     pdf.roundedRect(pxToMm(x + 100), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_2_id').val())) {
-        pdf.text($('#box_2_id').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_2_id').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_id').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_2_id').val())) {
+    //     pdf.text($('#box_2_id').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_2_id').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_id').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_2_id').val(), pxToMm(x + 155 - mmToPx((getTextWidth($('#box_2_id').val()) / 2))), pxToMm(y - 1))
 
-    pdf.text("هوية رقم", pxToMm(getPageWidthInPx() - 110), pxToMm(y))
+
+    pdf.text(":" + "هوية رقم", pxToMm(getPageWidthInPx() - 110), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
     pdf.text("License/CR No.:", pxToMm(x - 5), pxToMm(y))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_2_license').val())) {
-        pdf.text($('#box_2_license').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_2_license').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_license').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_2_license').val())) {
+    //     pdf.text($('#box_2_license').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_2_license').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_license').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_2_license').val(), pxToMm(x + 155 - mmToPx((getTextWidth($('#box_2_license').val()) / 2))), pxToMm(y - 1))
+
 
     pdf.setDrawColor('#000000')
     pdf.roundedRect(pxToMm(x + 100), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
-    pdf.text("رخصة/سجل", pxToMm(getPageWidthInPx() - 130), pxToMm(y))
+    pdf.text(":" + "رخصة/سجل", pxToMm(getPageWidthInPx() - 130), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
@@ -1114,13 +1226,15 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(x + 100), pxToMm(y - 15), pxToMm(110), pxToMm(20), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#box_2_date').val())) {
-        pdf.text($('#box_2_date').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#box_2_date').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_date').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#box_2_date').val())) {
+    //     pdf.text($('#box_2_date').val(), pxToMm(x + 100) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#box_2_date').val(), pxToMm(x + 100) + pxToMm(110) - 2 - getTextWidth($('#box_2_date').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#box_2_date').val(), pxToMm(x + 155 - mmToPx((getTextWidth($('#box_2_date').val()) / 2))), pxToMm(y - 1))
 
-    pdf.text("التاريخ", pxToMm(getPageWidthInPx() - 97), pxToMm(y))
+
+    pdf.text(":" + "التاريخ", pxToMm(getPageWidthInPx() - 97), pxToMm(y))
 
     y += 35
     pdf.setFontSize(pxToPt(13.5))
@@ -1155,11 +1269,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#shoot_date').val())) {
-        pdf.text($('#shoot_date').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#shoot_date').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#shoot_date').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#shoot_date').val())) {
+    //     pdf.text($('#shoot_date').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#shoot_date').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#shoot_date').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#shoot_date').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#shoot_date').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("تاريخ التصوير", pxToMm(getPageWidthInPx() - 130), pxToMm(y))
 
@@ -1172,11 +1288,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#start_time_last').val())) {
-        pdf.text($('#start_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#start_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#start_time_last').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#start_time_last').val())) {
+    //     pdf.text($('#start_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#start_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#start_time_last').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#start_time_last').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#start_time_last').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("موعد الدخول", pxToMm(getPageWidthInPx() - 135), pxToMm(y))
 
@@ -1189,11 +1307,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#end_time_last').val())) {
-        pdf.text($('#end_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#end_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#end_time_last').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#end_time_last').val())) {
+    //     pdf.text($('#end_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#end_time_last').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#end_time_last').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#end_time_last').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#end_time_last').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("موعد الخروج", pxToMm(getPageWidthInPx() - 130), pxToMm(y))
 
@@ -1206,11 +1326,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#total_hours').val())) {
-        pdf.text($('#total_hours').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#total_hours').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#total_hours').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#total_hours').val())) {
+    //     pdf.text($('#total_hours').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#total_hours').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#total_hours').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#total_hours').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#total_hours').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("مجموع الساعات", pxToMm(getPageWidthInPx() - 155), pxToMm(y))
 
@@ -1223,11 +1345,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#hourly_rate').val())) {
-        pdf.text($('#hourly_rate').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#hourly_rate').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#hourly_rate').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#hourly_rate').val())) {
+    //     pdf.text($('#hourly_rate').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#hourly_rate').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#hourly_rate').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#hourly_rate').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#hourly_rate').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("معدل سعر الساعة الواحدة", pxToMm(getPageWidthInPx() - 210), pxToMm(y))
 
@@ -1252,6 +1376,10 @@ function generatePDF() {
     y += 20
     justify(pdf, "قيمة الساعة الواحدة مضروبًا في 1.5 لرسوم العقار واجور مدير الموقع", pxToMm(getPageWidthInPx() - x - 313), pxToMm(y), pxToMm(getPageWidthInPx() / 2 - 80), 'rtl')
 
+
+    y += 20
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 40), pxToMm(y))
+
     y += 40
     pdf.setDrawColor('#D5D5D5')
     pdf.setFillColor('#D5D5D5')
@@ -1267,11 +1395,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75), 'F')
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#total_booking').val())) {
-        pdf.text($('#total_booking').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#total_booking').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#total_booking').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#total_booking').val())) {
+    //     pdf.text($('#total_booking').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#total_booking').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#total_booking').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#total_booking').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#total_booking').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("إجمالي قيمة الحجز", pxToMm(getPageWidthInPx() - 165), pxToMm(y))
 
@@ -1284,11 +1414,13 @@ function generatePDF() {
     pdf.roundedRect(pxToMm(getPageWidthInPx() / 2 - x - 41), pxToMm(y - 20), pxToMm(200), pxToMm(30), pxToMm(0.75), pxToMm(0.75))
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
-    if (isEnglishText($('#protection_deposit').val())) {
-        pdf.text($('#protection_deposit').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
-    } else {
-        pdf.text($('#protection_deposit').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#protection_deposit').val()), pxToMm(y - 2))
-    }
+    // if (isEnglishText($('#protection_deposit').val())) {
+    //     pdf.text($('#protection_deposit').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + 2, pxToMm(y - 2))
+    // } else {
+    //     pdf.text($('#protection_deposit').val(), pxToMm(getPageWidthInPx() / 2 - x - 41) + pxToMm(200) - 2 - getTextWidth($('#protection_deposit').val()), pxToMm(y - 2))
+    // }
+    pdf.text($('#protection_deposit').val(), pxToMm((getPageWidthInPx() / 2) - (mmToPx(getTextWidth($('#protection_deposit').val()) / 2))) + 2, pxToMm(y - 2))
+
 
     pdf.text("مبلغ تأمين", pxToMm(getPageWidthInPx() - 115), pxToMm(y))
 
@@ -1304,7 +1436,7 @@ function generatePDF() {
 
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
 
-    if (isEnglishText($('#host_rules').val())) {
+    if (isEnglishText2($('#host_rules').val())) {
         justify(pdf, $('#host_rules').val().length > 0 ? $('#host_rules').val() : '', pxToMm(x + 5), pxToMm(y + 20), pxToMm(getPageWidthInPx() - x * 2) - 2)
     } else {
         justify(pdf, $('#host_rules').val().length > 0 ? $('#host_rules').val() : '', pxToMm(x + 5), pxToMm(y + 20), pxToMm(getPageWidthInPx() - x * 2) - 2, 'rtl')
@@ -1315,7 +1447,10 @@ function generatePDF() {
     pdf.setFont('IBMPlexSansArabic-Regular', 'normal')
     justify(pdf, "إخلاء مسؤولية: يقر المستخدم بأن مقدمي الخدمات التي توفرهم مكانات إنما هم مقاولون مستقلون، وأن علاقة مكانات بمقدمي الخدمات هي علاقة مستقلة تماما عن علاقتها بالمستخدم. لذلك، لا يجوز صراحة ولا ضمناً أن تكون مكانات مسؤولة عن أي خدمة مقدمة أو خسارة أو ضرر ينشا أو يترتب عن ذلك بشكل مباشر أو غير مباشر . ولا تتدخل مكانات في تقييم مقدمي الخدمات، ولا يجوز اعتبار وجود اسم مقدم الخدمة في الدليل أو بالمنصة بأي حال على أنه توصية لاختيار مقدم خدمة معين. ويكون مقدم الخدمة مسؤولاً وحده عن جودة ومدى تناسب الخدمة المقدمة كما يكون مسؤولاً عن المعلومات التي يقدمها", pxToMm(x), pxToMm(y), pxToMm(getPageWidthInPx() - x - 52), 'rtl')
 
-    y += 100
+    y += 80
+    pdf.text(".", pxToMm(getPageWidthInPx() - x - 300), pxToMm(y))
+
+    y += 20
     pdf.line(pxToMm(x), pxToMm(y), pxToMm(getPageWidthInPx() - x), pxToMm(y))
 
     y += 20
@@ -1382,6 +1517,12 @@ function generatePDF() {
         this.text = text;
         this.wordLength = wordLength;
     };
+
+    // var blobPDF = new Blob([pdf.output('blob')], { type: "application/pdf" })
+    // var blobURL = URL.createObjectURL(blobPDF)
+
+    // // Open the PDF in a new window
+    // window.open(blobURL, '_blank');
 }
 
 function downloadPDF() {
@@ -1393,7 +1534,9 @@ function printPDF() {
     pdf.output('dataurlnewwindow')
 }
 
-var blobPDF = new Blob([pdf.output('blob')], { type: "application/pdf" })
-var blobURL = URL.createObjectURL(blobPDF)
+// generatePDF()
 
-$('#preview-frame').attr('src', blobURL)
+// var blobPDF = new Blob([pdf.output('blob')], { type: "application/pdf" })
+// var blobURL = URL.createObjectURL(blobPDF)
+
+// $('#preview-frame').attr('src', blobURL)
